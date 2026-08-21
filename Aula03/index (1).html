@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Portal de vendas de ativos de Indústria 4.0: sensores IIoT, robótica colaborativa, edge computing e software de manufatura.">
+<title>Fábrica Viva</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;800&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<a class="skip-link" href="#catalogo">Pular para o catálogo</a>
+
+<!-- ============ HEADER + NAV ============ -->
+<header class="site-header" id="topo">
+  <div class="telemetry" aria-label="Telemetria da plataforma em tempo real">
+    <div class="telemetry-track">
+      <ul class="telemetry-list">
+        <li><span class="dot dot-ok"></span>OEE médio da base <b data-tele="oee">78,4</b>%</li>
+        <li><span class="dot dot-warn"></span>Ativos em alerta preditivo <b data-tele="alert">37</b></li>
+        <li><span class="dot dot-ok"></span>Sensores online <b data-tele="sens">14.982</b></li>
+        <li><span class="dot dot-ok"></span>Latência edge <b data-tele="lat">12</b> ms</li>
+        <li><span class="dot dot-ok"></span>Pedidos processados hoje <b data-tele="ped">216</b></li>
+        <li><span class="dot dot-ok"></span>OEE médio da base <b>78,4</b>%</li>
+        <li><span class="dot dot-warn"></span>Ativos em alerta preditivo <b>37</b></li>
+        <li><span class="dot dot-ok"></span>Sensores online <b>14.982</b></li>
+        <li><span class="dot dot-ok"></span>Latência edge <b>12</b> ms</li>
+        <li><span class="dot dot-ok"></span>Pedidos processados hoje <b>216</b></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="bar">
+    <a class="brand" href="#topo" aria-label="Fábrica Viva, página inicial">
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M4 26V13l7 5V13l7 5V6l10 6v14z" stroke-linejoin="round"></path>
+          <path d="M4 26h24" stroke-linecap="round"></path>
+        </svg>
+      </span>
+      <span class="brand-text">Fábrica<em>Viva</em></span>
+    </a>
+
+    <nav class="main-nav" aria-label="Navegação principal">
+      <ul>
+        <li><a href="#catalogo">Catálogo</a></li>
+        <li><a href="#roi">Simulador de ROI</a></li>
+        <li><a href="#implantacao">Implantação</a></li>
+        <li><a href="#clientes">Clientes</a></li>
+      </ul>
+    </nav>
+
+    <div class="bar-actions">
+      <button class="icon-btn" id="themeToggle" type="button" aria-label="Alternar tema claro e escuro">
+        <svg class="ico-sun" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <circle cx="12" cy="12" r="4"></circle>
+          <path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M19.1 4.9l-1.4 1.4M6.3 17.7l-1.4 1.4"></path>
+        </svg>
+        <svg class="ico-moon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"></path>
+        </svg>
+      </button>
+      <button class="cart-btn" id="cartOpen" type="button" aria-label="Abrir carrinho de compras">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 4h2l2.4 11.4a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.6L21 8H6"></path>
+          <circle cx="10" cy="20" r="1"></circle><circle cx="18" cy="20" r="1"></circle>
+        </svg>
+        <span>Cotação</span>
+        <span class="cart-count" id="cartCount" aria-live="polite" aria-atomic="true">0</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ============ MAIN ============ -->
+<main>
+
+  <!-- ---------- HERO ---------- -->
+  <section class="hero" aria-labelledby="hero-title">
+    <canvas class="hero-canvas" id="meshCanvas" aria-hidden="true"></canvas>
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <p class="eyebrow"><span class="pulse"></span>Plataforma certificada ISA-95 &middot; ISO 27001</p>
+        <h1 id="hero-title">A fábrica que se explica sozinha começa com o ativo certo.</h1>
+        <p class="lede">Portal de vendas de sensores IIoT, robótica colaborativa, edge computing e software de manufatura. Especifique, simule o retorno e feche a cotação sem sair da linha de produção.</p>
+        <div class="hero-cta">
+          <a class="btn btn-primary" href="#catalogo">Explorar catálogo</a>
+          <a class="btn btn-ghost" href="#roi">Calcular meu retorno</a>
+        </div>
+        <ul class="hero-proof">
+          <li><b class="count" data-to="312">0</b><span>plantas conectadas</span></li>
+          <li><b class="count" data-to="14982" data-sep="1">0</b><span>sensores em operação</span></li>
+          <li><b class="count" data-to="27" data-suffix="%">0</b><span>menos parada não planejada</span></li>
+        </ul>
+      </div>
+
+      <aside class="hmi" aria-label="Painel de status da linha de demonstração">
+        <div class="hmi-head">
+          <p class="hmi-title">Linha&nbsp;A &middot; Estamparia</p>
+          <p class="hmi-state"><span class="dot dot-ok"></span>Em produção</p>
+        </div>
+        <div class="gauge">
+          <svg viewBox="0 0 200 116" role="img" aria-label="Indicador de eficiência global do equipamento em 78,4 por cento">
+            <path class="gauge-track" d="M18 104a82 82 0 0 1 164 0" fill="none" stroke-linecap="round" stroke-width="14"></path>
+            <path class="gauge-fill" id="gaugeFill" d="M18 104a82 82 0 0 1 164 0" fill="none" stroke-linecap="round" stroke-width="14"></path>
+          </svg>
+          <div class="gauge-value"><b id="oeeValue">0,0</b><span>OEE %</span></div>
+        </div>
+        <ul class="hmi-metrics">
+          <li><span>Disponibilidade</span><b>92,1%</b><div class="mini"><i style="--w:92%"></i></div></li>
+          <li><span>Performance</span><b>88,7%</b><div class="mini"><i style="--w:89%"></i></div></li>
+          <li><span>Qualidade</span><b>96,0%</b><div class="mini"><i style="--w:96%"></i></div></li>
+        </ul>
+        <p class="hmi-foot">Dados simulados para demonstração &middot; atualização a cada 3&nbsp;s</p>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ---------- PILARES ---------- -->
+  <section class="section pillars" aria-labelledby="pil-title">
+    <div class="section-head">
+      <p class="kicker">Camadas da arquitetura</p>
+      <h2 id="pil-title">Da máquina ao indicador, sem lacunas entre camadas</h2>
+    </div>
+    <ul class="pillar-list">
+      <li class="pillar">
+        <p class="pillar-layer">Camada 0</p>
+        <h3>Aquisição</h3>
+        <p>Sensores de vibração, temperatura e visão que instrumentam ativos legados sem trocar a máquina.</p>
+      </li>
+      <li class="pillar">
+        <p class="pillar-layer">Camada 1</p>
+        <h3>Borda</h3>
+        <p>Gateways que filtram e processam o dado no chão de fábrica, com 12&nbsp;ms de latência e operação offline.</p>
+      </li>
+      <li class="pillar">
+        <p class="pillar-layer">Camada 2</p>
+        <h3>Integração</h3>
+        <p>MQTT e OPC&nbsp;UA falando com o ERP e o MES pelos padrões que a sua engenharia já usa.</p>
+      </li>
+      <li class="pillar">
+        <p class="pillar-layer">Camada 3</p>
+        <h3>Decisão</h3>
+        <p>Gêmeo digital e manutenção preditiva convertendo telemetria em ordem de serviço antes da falha.</p>
+      </li>
+    </ul>
+  </section>
+
+  <!-- ---------- CATÁLOGO ---------- -->
+  <section class="section catalog" id="catalogo" aria-labelledby="cat-title">
+    <div class="section-head">
+      <p class="kicker">Catálogo técnico</p>
+      <h2 id="cat-title">Ativos prontos para especificação</h2>
+      <p class="section-lede">Preços de referência para compra direta. Volumes acima de 10 unidades entram em política de desconto progressivo.</p>
+    </div>
+
+    <div class="catalog-body">
+      <!-- trilha de filtros -->
+      <aside class="filters" aria-label="Filtros do catálogo">
+        <div class="filter-block">
+          <p class="filter-label">Buscar</p>
+          <div class="search">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+              <circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path>
+            </svg>
+            <input type="search" id="searchInput" placeholder="Part number ou nome" aria-label="Buscar produto por part number ou nome">
+          </div>
+        </div>
+
+        <div class="filter-block">
+          <p class="filter-label">Categoria</p>
+          <ul class="chips" role="group" aria-label="Filtrar por categoria">
+            <li><button class="chip is-active" type="button" data-cat="todos" aria-pressed="true">Todos</button></li>
+            <li><button class="chip" type="button" data-cat="sensoriamento" aria-pressed="false">Sensoriamento</button></li>
+            <li><button class="chip" type="button" data-cat="robotica" aria-pressed="false">Robótica</button></li>
+            <li><button class="chip" type="button" data-cat="conectividade" aria-pressed="false">Conectividade</button></li>
+            <li><button class="chip" type="button" data-cat="software" aria-pressed="false">Software</button></li>
+            <li><button class="chip" type="button" data-cat="energia" aria-pressed="false">Energia</button></li>
+          </ul>
+        </div>
+
+        <div class="filter-block">
+          <p class="filter-label">Investimento máximo</p>
+          <input type="range" id="priceRange" min="1000" max="220000" step="1000" value="220000" aria-label="Investimento máximo por unidade">
+          <p class="filter-read">até <b id="priceRead">R$ 220.000</b></p>
+        </div>
+
+        <div class="filter-block filter-note">
+          <p><b id="resultCount">9</b> itens correspondem aos filtros.</p>
+          <button class="btn btn-mini" type="button" id="clearFilters">Limpar filtros</button>
+        </div>
+      </aside>
+
+      <!-- grade de produtos -->
+      <div class="grid" id="productGrid"></div>
+    </div>
+
+    <p class="empty" id="emptyState" hidden>Nenhum ativo corresponde a esses critérios. Ajuste a faixa de investimento ou limpe os filtros.</p>
+  </section>
+
+  <!-- ---------- SIMULADOR DE ROI ---------- -->
+  <section class="section roi" id="roi" aria-labelledby="roi-title">
+    <div class="section-head">
+      <p class="kicker">Ferramenta de decisão</p>
+      <h2 id="roi-title">Quanto a sua parada não planejada custa por ano</h2>
+      <p class="section-lede">Ajuste os parâmetros da sua planta. O modelo considera uma redução conservadora de 27% em paradas após a implantação do pacote de manutenção preditiva.</p>
+    </div>
+
+    <div class="roi-panel">
+      <div class="roi-inputs">
+        <div class="field">
+          <label for="rMachines">Máquinas críticas monitoradas</label>
+          <input type="range" id="rMachines" min="5" max="200" step="5" value="40">
+          <output for="rMachines" id="oMachines">40 máquinas</output>
+        </div>
+        <div class="field">
+          <label for="rHours">Horas de parada não planejada por mês</label>
+          <input type="range" id="rHours" min="2" max="120" step="2" value="36">
+          <output for="rHours" id="oHours">36 h/mês</output>
+        </div>
+        <div class="field">
+          <label for="rCost">Custo da hora parada</label>
+          <input type="range" id="rCost" min="500" max="25000" step="500" value="7500">
+          <output for="rCost" id="oCost">R$ 7.500 /h</output>
+        </div>
+        <div class="field">
+          <label for="rInvest">Investimento no pacote</label>
+          <input type="range" id="rInvest" min="20000" max="600000" step="10000" value="180000">
+          <output for="rInvest" id="oInvest">R$ 180.000</output>
+        </div>
+      </div>
+
+      <div class="roi-out">
+        <ul class="roi-kpis">
+          <li>
+            <p class="kpi-label">Economia anual estimada</p>
+            <b class="kpi-value accent" id="kSave">R$ 0</b>
+          </li>
+          <li>
+            <p class="kpi-label">Payback</p>
+            <b class="kpi-value" id="kPayback">0 meses</b>
+          </li>
+          <li>
+            <p class="kpi-label">ROI em 24 meses</p>
+            <b class="kpi-value" id="kRoi">0%</b>
+          </li>
+          <li>
+            <p class="kpi-label">Horas recuperadas / ano</p>
+            <b class="kpi-value" id="kHours">0 h</b>
+          </li>
+        </ul>
+
+        <figure class="chart">
+          <figcaption>Retorno acumulado &times; investimento &mdash; 24 meses</figcaption>
+          <svg id="roiChart" viewBox="0 0 560 220" role="img" aria-labelledby="roiChartDesc" preserveAspectRatio="none">
+            <desc id="roiChartDesc">Curva de retorno acumulado cruzando a linha de investimento no mês de payback.</desc>
+            <g class="chart-grid" id="chartGrid"></g>
+            <line class="chart-invest" id="investLine" x1="0" x2="560"></line>
+            <path class="chart-area" id="chartArea"></path>
+            <path class="chart-line" id="chartLine"></path>
+            <circle class="chart-dot" id="breakDot" r="5"></circle>
+          </svg>
+          <ul class="chart-legend">
+            <li><span class="sw sw-line"></span>Retorno acumulado</li>
+            <li><span class="sw sw-invest"></span>Investimento</li>
+            <li><span class="sw sw-dot"></span>Ponto de equilíbrio</li>
+          </ul>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ---------- IMPLANTAÇÃO ---------- -->
+  <section class="section steps" id="implantacao" aria-labelledby="imp-title">
+    <div class="section-head">
+      <p class="kicker">Do pedido ao dado</p>
+      <h2 id="imp-title">Quatro etapas até o primeiro indicador em tela</h2>
+      <p class="section-lede">A sequência é fixa porque cada etapa depende do aceite da anterior. O prazo médio total é de 47 dias.</p>
+    </div>
+    <ol class="step-list">
+      <li>
+        <p class="step-n">Etapa 1 &middot; 5 dias</p>
+        <h3>Levantamento de ativos</h3>
+        <p>Nossa engenharia mapeia máquinas, protocolos disponíveis e pontos de energia. Você recebe a lista técnica de materiais.</p>
+      </li>
+      <li>
+        <p class="step-n">Etapa 2 &middot; 12 dias</p>
+        <h3>Cotação e aprovação</h3>
+        <p>O carrinho vira proposta formal com prazo de entrega por item, condição de pagamento e escopo de instalação.</p>
+      </li>
+      <li>
+        <p class="step-n">Etapa 3 &middot; 20 dias</p>
+        <h3>Comissionamento</h3>
+        <p>Instalação em janela de parada programada, calibração dos sensores e validação ponto a ponto com o time de manutenção.</p>
+      </li>
+      <li>
+        <p class="step-n">Etapa 4 &middot; 10 dias</p>
+        <h3>Operação assistida</h3>
+        <p>Treinamento dos operadores, ajuste dos limiares de alerta e acompanhamento até o OEE estabilizar.</p>
+      </li>
+    </ol>
+  </section>
+
+  <!-- ---------- CLIENTES ---------- -->
+  <section class="section clients" id="clientes" aria-labelledby="cli-title">
+    <div class="section-head">
+      <p class="kicker">Resultados em campo</p>
+      <h2 id="cli-title">O que mudou depois da instrumentação</h2>
+    </div>
+    <div class="client-grid">
+      <article class="case">
+        <p class="case-metric">-34%</p>
+        <p class="case-label">parada não planejada</p>
+        <blockquote><p>&ldquo;Trocamos manutenção por calendário por manutenção por condição. O rolamento avisa antes de quebrar e a ordem de serviço já nasce com a peça reservada.&rdquo;</p></blockquote>
+        <p class="case-who"><b>Metalúrgica Paraopeba</b><span>Gerência de Manutenção &middot; 3 plantas</span></p>
+      </article>
+      <article class="case">
+        <p class="case-metric">+11 p.p.</p>
+        <p class="case-label">no OEE da linha gargalo</p>
+        <blockquote><p>&ldquo;O gêmeo digital mostrou que o gargalo não era a prensa, era o setup. Mudamos o sequenciamento e ganhamos onze pontos sem comprar máquina.&rdquo;</p></blockquote>
+        <p class="case-who"><b>Alimentos Serra Azul</b><span>Diretoria Industrial &middot; 1 planta</span></p>
+      </article>
+      <article class="case">
+        <p class="case-metric">7 meses</p>
+        <p class="case-label">de payback real</p>
+        <blockquote><p>&ldquo;O simulador projetou nove meses e o resultado veio em sete. A diferença foi a queda no consumo de energia, que nem estava na conta.&rdquo;</p></blockquote>
+        <p class="case-who"><b>Têxtil Vale do Itajaí</b><span>Controladoria &middot; 2 plantas</span></p>
+      </article>
+    </div>
+  </section>
+
+  <!-- ---------- CTA FINAL ---------- -->
+  <section class="section cta-final" aria-labelledby="cta-title">
+    <div class="cta-box">
+      <div>
+        <h2 id="cta-title">Monte a sua cotação e receba a proposta em 48&nbsp;h</h2>
+        <p>Adicione os ativos ao carrinho, ajuste as quantidades e envie. Um engenheiro de aplicação revisa a lista antes de precificar.</p>
+      </div>
+      <div class="cta-actions">
+        <a class="btn btn-primary" href="#catalogo">Voltar ao catálogo</a>
+        <button class="btn btn-ghost" type="button" id="cartOpen2">Ver carrinho</button>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============ CARRINHO (drawer) ============ -->
+<aside class="drawer" id="cartDrawer" aria-label="Carrinho de cotação" aria-hidden="true">
+  <div class="drawer-head">
+    <div>
+      <h2>Sua cotação</h2>
+      <p class="drawer-sub">Preços de referência, sem impostos e frete.</p>
+    </div>
+    <button class="icon-btn" id="cartClose" type="button" aria-label="Fechar carrinho">
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"></path></svg>
+    </button>
+  </div>
+
+  <ul class="cart-list" id="cartList"></ul>
+
+  <p class="cart-empty" id="cartEmpty">Nenhum item na cotação. Escolha ativos no catálogo para começar.</p>
+
+  <div class="drawer-foot">
+    <ul class="totals">
+      <li><span>Subtotal</span><b id="sumSub">R$ 0</b></li>
+      <li><span>Desconto por volume</span><b class="ok" id="sumDisc">&minus; R$ 0</b></li>
+      <li class="total-row"><span>Total estimado</span><b id="sumTotal">R$ 0</b></li>
+    </ul>
+    <button class="btn btn-primary btn-full" type="button" id="checkout">Enviar para aprovação</button>
+    <p class="drawer-note">Demonstração acadêmica &middot; nenhum dado é transmitido.</p>
+  </div>
+</aside>
+<div class="scrim" id="scrim" hidden></div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<!-- ============ FOOTER ============ -->
+<footer class="site-footer">
+  <div class="footer-top">
+    <div class="footer-brand">
+      <span class="brand-text">Fábrica<em>Viva</em></span>
+      <p>Portal de vendas de ativos de manufatura avançada. Projeto acadêmico desenvolvido para a disciplina de Engenharia de Software II &mdash; CEUB.</p>
+    </div>
+
+    <nav class="footer-nav" aria-label="Rodapé">
+      <div>
+        <p class="footer-title">Catálogo</p>
+        <ul>
+          <li><a href="#catalogo">Sensoriamento</a></li>
+          <li><a href="#catalogo">Robótica</a></li>
+          <li><a href="#catalogo">Conectividade</a></li>
+          <li><a href="#catalogo">Software industrial</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="footer-title">Plataforma</p>
+        <ul>
+          <li><a href="#roi">Simulador de ROI</a></li>
+          <li><a href="#implantacao">Implantação</a></li>
+          <li><a href="#clientes">Casos de uso</a></li>
+          <li><a href="#topo">Status da rede</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="footer-title">Conformidade</p>
+        <ul>
+          <li><a href="#topo">ISA-95</a></li>
+          <li><a href="#topo">ISO 27001</a></li>
+          <li><a href="#topo">NR-12</a></li>
+          <li><a href="#topo">LGPD</a></li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+
+  <div class="footer-bottom">
+    <p>&copy; 2026 Fábrica Viva &middot; Demonstração front-end sem servidor.</p>
+    <p class="mono">HTML5 &middot; CSS3 &middot; JavaScript &mdash; sem dependências externas</p>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
